@@ -1,4 +1,4 @@
----- To restore the encrypted database on a different Server we need to move the backup file, the certificate, the private key to that server (or somewhere accessible)
+To restore the encrypted database on a different Server we need to move the backup file, the certificate, the private key to that server (or somewhere accessible)
 
        ---- We need to create the same master key encryption on this server
             
@@ -33,31 +33,36 @@
 
 ------------------------------------------------------------------------------------------------------------------------
 
------ Note: To undo the changes we have made to the SQL server so far:
+Note: To undo the changes we have made to the SQL server so far:
 
---- 1- we start by deleting the database encryption key (because the certification is bond to this certificate)
+1- we start by deleting the database encryption key (because the certification is bond to this certificate)
+ 
+      
       USE Database_Name;
       GO
       DROP DATABASE ENCRYPTION KEY
 
 
---- 2- To drop the certification we created:
+2- To drop the certification we created:
+
        USE MASTER;
        GO
        DROP CERTIFICATE TEST_CERT
 
---- 3- Now we can drop the master key by running:
+3- Now we can drop the master key by running:
+
+
        USE Master;
        GO
        DROP MASTER KEY;
 
---- Please note that we still have a copy of the encrypted database backup, the certificate, and the private key stored in the mentioned location.
+Please note that we still have a copy of the encrypted database backup, the certificate, and the private key stored in the mentioned location.
 
---- Additional Considerations:
---- It's important to note that when restoring an encrypted backup to a different instance, the original certificate used when the backup was taken should be available on that instance
+Additional Considerations:
+It's important to note that when restoring an encrypted backup to a different instance, the original certificate used when the backup was taken should be available on that instance
 
 
---- The process of creating an asymmetric key as an alternative to using a backup is also mentioned in the document, which provides additional flexibility in managing encryption keys.
+The process of creating an asymmetric key as an alternative to using a backup is also mentioned in the document, which provides additional flexibility in managing encryption keys.
 
 Wishing you all the very best,
 Nameer
