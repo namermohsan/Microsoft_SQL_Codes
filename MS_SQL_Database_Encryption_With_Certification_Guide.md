@@ -1,24 +1,24 @@
---- Encrypting backup of SQL: (Note: we can do a whole database encryption or encrypting individual columns)
+Encrypting backup of SQL: (Note: we can do a whole database encryption or encrypting individual columns)
 
-----Note: the database master key is used to protect the primary key of the certificate. 
+Note: the database master key is used to protect the primary key of the certificate. 
 
 
---- we need to start creating a certificate and encryption key,
-   --- creating the master key:
+we need to start creating a certificate and encryption key,
+   Creating the master key:
 
 
        USE Master;
        GO
        CREATE MASTER KEY ENCRYPTION BY PASSWORD = '12345';
     
-   --- Creating the certificate:
+   Creating the certificate:
 
 
        USE MASTER;
        GO
        CREATE CERTIFICATE TEST_CERT with subject = 'TEST encryption Key';
 
-  --- At this point we need to backup the certificate:
+   At this point we need to backup the certificate:
 
 
       USE MASTER;
@@ -29,7 +29,7 @@
       GO 
 
 
-  --- Creating database encryption key 
+   Creating database encryption key 
       
       USE Database_Name;
       GO
@@ -40,7 +40,7 @@
 
 
 
-   --- To Backup the database :
+  To Backup the database :
       
       USE MASTER;
       GO
@@ -50,7 +50,7 @@
       STATS = 10
       GO
 
----- Note: To drop the database:
+  Note: To drop the database:
 
      USE MASTER;
      GO
@@ -58,4 +58,5 @@
 
 
 Wishing you all the very best,
+
 Nameer
